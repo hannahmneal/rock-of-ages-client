@@ -24,7 +24,7 @@ describe('Authorized Component', () => {
     vi.clearAllMocks()
   })
 
-  it('redirects to login when no token is present', () => {
+  it('redirects to auth when no token is present', () => {
     // Mock localStorage to return null for token
     Object.defineProperty(window, 'localStorage', {
       value: {
@@ -40,7 +40,7 @@ describe('Authorized Component', () => {
       </MemoryRouter>
     )
 
-    // Check if we're redirected to login (Outlet should not be rendered)
+    // Check if we're redirected to auth (Outlet should not be rendered)
     expect(screen.queryByTestId('outlet')).not.toBeInTheDocument()
   })
 
@@ -67,7 +67,7 @@ describe('Authorized Component', () => {
 
   it('renders children when token is present but invalid', () => {
     // This test is redundant with the first test since we're testing the same behavior
-    // Just checking that no token and invalid token both redirect to login
+    // Just checking that no token and invalid token both redirect to auth
     expect(true).toBe(true)
   })
 })

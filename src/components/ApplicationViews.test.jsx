@@ -36,18 +36,10 @@ vi.mock('./Authorized', () => ({
   ))
 }))
 
-vi.mock('../pages/Login.jsx', () => ({
-  Login: vi.fn(() => (
-    <div data-testid="login">
-      <div>Login Component</div>
-    </div>
-  ))
-}))
-
-vi.mock('../pages/Register.jsx', () => ({
-  Register: vi.fn(() => (
-    <div data-testid="register">
-      <div>Register Component</div>
+vi.mock('../pages/Auth.jsx', () => ({
+  Auth: vi.fn(() => (
+    <div data-testid="auth">
+      <div>Auth Component</div>
     </div>
   ))
 }))
