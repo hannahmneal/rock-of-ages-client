@@ -2,8 +2,10 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { AuthForm } from "../components/AuthForm";
 import { USER_NOT_FOUND_FEEDBACK, USER_EXISTS_FEEDBACK } from "../constants"
+import { useTheme } from "@mui/material";
 
 export const Auth = () => {
+  const theme = useTheme()
   const apiUrl = import.meta.env.VITE_API_URL
   const navigate = useNavigate()
   const [showAlert, setShowAlert] = useState(false)
@@ -17,7 +19,7 @@ export const Auth = () => {
   const buildAuthRequestBody = () => ({
     email,
     password,
-    ...(loginFormSelected === "register" && {
+    ...(loginFormSelected === false && {
       first_name: firstName,
       last_name: lastName,
 
@@ -28,9 +30,16 @@ export const Auth = () => {
     e.preventDefault()
     console.log({ email, password, mode: loginFormSelected ? "login" : "register" });
 
-    const endpoint = () => loginFormSelected === "login" ? "login" : "register"
+    let endpoint;
+    if (loginFormSelected === true) {
+      endpoint = "login"
+    }
+    if (!loginFormSelected) {
+      endpoint = "register"
+    }
+    console.log(`endpoint: ${endpoint}`);
 
-      fetch(`${apiUrl}/${endpoint()}`, {
+      fetch(`${apiUrl}/${endpoint}`, {
         method: "POST",
         body: JSON.stringify(buildAuthRequestBody()),
         headers: {
@@ -45,11 +54,11 @@ export const Auth = () => {
         }
         else {
           setShowAlert(true)
-          if (loginFormSelected === "login") {
-            setAlertFeedback(`User with email ${email} does not exist. Please register.`)
+          if (loginFormSelected === true) {
+            setAlertFeedback(`404: Not Found.\nUser with email ${email} does not exist. Please register.`)
           }
           else {
-            setAlertFeedback(`A user with the email ${email} already exists. Please log in.`)
+            setAlertFeedback(`409: Conflict.\nA user with the email ${email} already exists. Please log in.`)
           }
         }
       })
@@ -60,8 +69,8 @@ export const Auth = () => {
       style={{
         alignItems: 'center',
         display: 'flex',
-        justifyContent: 'center',
         height: '100vh',
+        justifyContent: 'center',
       }}
     >
       <AuthForm
@@ -76,10 +85,11 @@ export const Auth = () => {
         setLastName={setLastName}
         password={password}
         setPassword={setPassword}
-      />
-      {showAlert && (
-        <p>{alertFeedback}</p>
-      )}
+      >
+        {showAlert && (
+          <h3 style={{ color: theme.palette.error.dark}}>{alertFeedback}</h3>
+        )}
+      </AuthForm>
     </main>
   );
 }

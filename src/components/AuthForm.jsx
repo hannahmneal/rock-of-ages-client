@@ -140,7 +140,10 @@ export const AuthForm = ({
                 bgcolor: 'background.paper',  // same as primary.main
                 borderRadius: 8,
                 boxShadow: primaryMainShadow(theme),
+                height: "fit-content",
+                margin: "2rem",
                 padding: "4rem",
+                width: "fit-content",
             }}
         >
             <h1 style={{ padding: "24px", color: theme.palette.common.lightOrange }}>
