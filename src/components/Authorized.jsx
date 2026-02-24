@@ -10,5 +10,5 @@ export const Authorized = () => {
       </main>
     </>
   }
-  return <Navigate to='/login' replace />
+  return <Navigate to='/auth' replace />
 }

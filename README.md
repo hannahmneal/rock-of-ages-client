@@ -30,12 +30,12 @@ Open the URL that you see in your browser.
 
 ## Testing the application
 
-1. Click on "Not a member yet?" and create an account 
+1. Click on "Register" and create an account (this is a demo application; **do not enter a real email or a real password**)
     >do not use a real email or password here, just make something up
 2. Click on "All Rocks" in the nav bar. You should see a list of rocks from all the users' collections. 
 3. Click on "Collect a Rock". Create a rock for your collection. You should see your newly created rock in the "All Rocks" list.
 4. Click on "My Rocks". You should see your newly added rock, and only your rocks.
-5. Click "logout". You should successfully logout of the application and be redirected back to the Login page.  
+5. Click "Logout". You should successfully Logout of the application and be redirected back to the Auth page.  
 
 ## The API
 

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { screen } from '@testing-library/react'
-import { Login } from './Login'
+import { Auth } from './Auth'
 import { renderWithRouter } from '../tests/utils'
 import userEvent from '@testing-library/user-event'
 
@@ -16,7 +16,7 @@ vi.mock('react-router-dom', async () => {
   }
 })
 
-describe('Login Component', () => {
+describe('Auth Component', () => {
   // Reset mocks before each test
   beforeEach(() => {
     vi.clearAllMocks()
@@ -34,9 +34,9 @@ describe('Login Component', () => {
     window.fetch = vi.fn()
   })
 
-  it('renders the login form', () => {
+  it('renders the auth form', () => {
     // Render the component
-    renderWithRouter(<Login />)
+    renderWithRouter(<Auth />)
     
     // Check if the form elements are present
     expect(screen.getByText(/Please sign in/i)).toBeInTheDocument()
@@ -52,7 +52,7 @@ describe('Login Component', () => {
     const user = userEvent.setup()
     
     // Render the component
-    renderWithRouter(<Login />)
+    renderWithRouter(<Auth />)
     
     // Get form inputs
     const emailInput = screen.getByLabelText(/email address/i)
@@ -79,7 +79,7 @@ describe('Login Component', () => {
     expect(true).toBe(true)
   })
 
-  it('navigates to register page when register link is clicked', async () => {
+  it('navigates to register view when register button is clicked', async () => {
     // This test is skipped for now due to issues with mocking the navigation
     // In a real project, we would need to mock the navigation properly
     expect(true).toBe(true)
