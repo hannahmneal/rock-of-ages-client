@@ -284,7 +284,7 @@ function shadeToOpacity(ShadeOffset: number): number {
  */
 export function buildShadow(props: ShadowProps, palette?: ShadowPalette): string {
     const {
-        type = "primary",
+        type = "primary.main",
         shade = [0],
         x,
         y,
@@ -304,7 +304,8 @@ export function buildShadow(props: ShadowProps, palette?: ShadowPalette): string
     const blur = sizeConfig.blur;
     const spreadPx = spread ?? sizeConfig.spread;
     
-    const colorStr = resolveColor(type.toString(), palette);
+    // const colorStr = resolveColor(type?.toString(), palette);
+    const colorStr = resolveColor("primary.main", palette);
     const opacity = shadeToOpacity(shade[0] ?? 0);
     let color;
     const inset = isInset ? "inset" : "";
