@@ -284,7 +284,7 @@ function shadeToOpacity(ShadeOffset: number): number {
  */
 export function buildShadow(props: ShadowProps, palette?: ShadowPalette): string {
     const {
-        type,
+        type = "primary",
         shade = [0],
         x,
         y,

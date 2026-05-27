@@ -50,3 +50,4 @@ jobs:
             --paths "/*"
         env:
           AWS_REGION: ${{ secrets.AWS_REGION }}
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
