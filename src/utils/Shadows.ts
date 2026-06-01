@@ -117,10 +117,10 @@ function resolveTone(colorLevel: ColorLevel, tone: ColorTone): string | undefine
  * @returns A string
  */
 function resolveColor (
-    type: string,
+    type: string = "#00000000",
     palette?: ShadowPalette
 ): string {
-    // colorKey.tone --------------------------------------------------------------------------
+    // colorKey.tone -------------------------------------------------------------------------
     if (type.includes(".")) {
         const dotIndex = type.indexOf(".");
         const colorKey = type.slice(0, dotIndex);
@@ -146,7 +146,7 @@ function resolveColor (
 
     // Plain palette key ("primary") --------------------------------------------------------------------------
 
-    if (palette && !type.includes(".")) {
+    if (palette && type.includes(".")) {
         const entry = palette[type];
         if (isColorLevel(entry)) {
             
@@ -284,7 +284,7 @@ function shadeToOpacity(ShadeOffset: number): number {
  */
 export function buildShadow(props: ShadowProps, palette?: ShadowPalette): string {
     const {
-        type = "primary.main",
+        type,
         shade = [0],
         x,
         y,
@@ -304,8 +304,7 @@ export function buildShadow(props: ShadowProps, palette?: ShadowPalette): string
     const blur = sizeConfig.blur;
     const spreadPx = spread ?? sizeConfig.spread;
     
-    // const colorStr = resolveColor(type?.toString(), palette);
-    const colorStr = resolveColor("primary.main", palette);
+    const colorStr = resolveColor(type?.toString(), palette);
     const opacity = shadeToOpacity(shade[0] ?? 0);
     let color;
     const inset = isInset ? "inset" : "";

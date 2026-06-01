@@ -28,7 +28,6 @@ export const Auth = () => {
 
   const handleAuth = (e) => {
     e.preventDefault()
-    console.log({ email, password, mode: loginFormSelected ? "login" : "register" });
 
     let endpoint;
     if (loginFormSelected === true) {
@@ -37,7 +36,6 @@ export const Auth = () => {
     if (!loginFormSelected) {
       endpoint = "register"
     }
-    console.log(`endpoint: ${endpoint}`);
 
       fetch(`${apiUrl}/${endpoint}`, {
         method: "POST",
@@ -85,6 +83,7 @@ export const Auth = () => {
         setLastName={setLastName}
         password={password}
         setPassword={setPassword}
+        theme={theme}
       >
         {showAlert && (
           <h3 style={{ color: theme.palette.error.dark}}>{alertFeedback}</h3>

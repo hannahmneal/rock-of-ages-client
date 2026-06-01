@@ -1,4 +1,5 @@
-import { alpha, useTheme } from "@mui/material/styles";
+import { alpha } from "@mui/material/styles";
+import { useTheme } from "@mui/material";
 import {
     Box,
     Button,
@@ -30,7 +31,7 @@ const customInputStyles = (theme) => ({
         right: 0,
         bottom: 0,
         height: "2px", // <-- thickness of the "border"
-        background: `linear-gradient(135deg, ${alpha(theme.palette.success.main, 0.3)}, ${alpha(theme.palette.common.orange, 0.3)})`,
+        background: `${alpha(theme.palette.success.main, 0.3)}`,
         transform: "scaleX(0)",
         transformOrigin: "left",
         transition: "transform 200ms ease",
@@ -117,17 +118,15 @@ export const AuthForm = ({
     handleAuth,
     loginFormSelected,
     setLoginFormSelected,
+    theme,
     children 
 }) => {
-    const theme = useTheme();
 
     const registerSelected = !loginFormSelected;
 
     const handleFormSelection = (selected) => {
         setLoginFormSelected(selected === "login");
     }
-
-    console.log(`email: ${email}`);
 
     return (
         <Stack
@@ -276,8 +275,17 @@ export const AuthForm = ({
                     boxShadow: primaryMainButtonShadow(theme),
                     padding: "1rem",
                     transition: 'background 1s ease',
+                    // '&:hover': {
+                    //     background: `
+                    //         linear-gradient(135deg,
+                    //         ${alpha(theme.palette.success.main, 0.3)}
+                    //     `
+                    // },
                     '&:hover': {
-                        background: `linear-gradient(135deg, ${alpha(theme.palette.success.main, 0.3)}, ${alpha(theme.palette.common.orange, 0.3)})`
+                        background: `
+                            linear-gradient(135deg,
+                            ${alpha("#1B1B1B", 0.3)}
+                        `
                     },
                 }}
                 type="submit"
